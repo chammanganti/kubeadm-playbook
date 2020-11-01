@@ -1,0 +1,21 @@
+- name: Init k8s master
+  shell: kubeadm init --apiserver-advertise-address="{{ hostvars.ansible_host }}" --pod-network-cidr=192.168.0.0/16
+  register: init_out
+
+- name: Write kubeadm init output
+  become: no
+  local_action:
+    module: copy
+    content: "{{ init_out.stdout }}"
+    dest: /tmp/init.out
+
+- name: Taint master
+  shell: kubectl taint nodes --all node-role.kubernetes.io/master-
+
+- name: Copy calico
+  copy:
+    src: ../files/calico.yaml
+    dest: /tmp
+
+- name: Install CNI
+  shell: kubectl create -f /tmp/calico.yaml

@@ -1,0 +1,20 @@
+---
+- hosts: all
+  remote_user: "{{ hostvars.ansible_user }}"
+  become: yes
+  roles:
+    - common
+
+- hosts: master
+  remote_user: "{{ hostvars.ansible_user }}"
+  become: yes
+  roles:
+    - master
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf
+
+- hosts: nodes
+  remote_user: "{{ hostvars.ansible_user }}"
+  become: yes
+  roles:
+    - nodes

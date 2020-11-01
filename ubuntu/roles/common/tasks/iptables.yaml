@@ -1,0 +1,5 @@
+- name: Add iptables ipv6 rules
+  copy:
+    src: ../files/k8s.conf
+    dest: /etc/sysctl.d/
+  notify: sysctl-load

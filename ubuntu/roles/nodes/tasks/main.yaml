@@ -1,0 +1,7 @@
+- name: Copy init.out
+  copy:
+    src: /tmp/init.out
+    dest: /tmp
+
+- name: Join nodes
+  shell: tail -n 2 /tmp/init.out | sh -
