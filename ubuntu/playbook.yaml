@@ -18,3 +18,9 @@
   become: yes
   roles:
     - nodes
+
+- hosts: master
+  remote_user: "{{ hostvars.ansible_user }}"
+  become: yes
+  roles:
+    - postmaster

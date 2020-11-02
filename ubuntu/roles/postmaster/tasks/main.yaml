@@ -1,0 +1,2 @@
+- name: Untain master
+  shell: kubectl taint nodes "{{ inventory_hostname }}" node-role.kubernetes.io/master=:NoSchedule
