@@ -24,3 +24,5 @@
   become: yes
   roles:
     - postmaster
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf
