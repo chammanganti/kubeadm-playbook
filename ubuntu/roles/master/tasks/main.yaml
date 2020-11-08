@@ -10,7 +10,7 @@
     dest: /tmp/init.out
 
 - name: Taint master
-  shell: kubectl taint nodes "{{ inventory_hostname }}" node-role.kubernetes.io/master-
+  shell: kubectl taint nodes --all node-role.kubernetes.io/master-
 
 - name: Copy calico
   copy:
